@@ -19,10 +19,11 @@ vector<int> TwoColor(vector<vector<int>>& graph) {
         while (q.size()) {
             int u = q.front(); q.pop();
             for (auto v : graph[u]) {
+                if (col[v] == col[u]) return {};
                 if (col[v] == -1) {
                     col[v] = col[u]^1; // sets color to opposite of current
                     q.push(v);
-                } else if (col[v] == col[u]) return {};
+                }
             }
         }
     }
