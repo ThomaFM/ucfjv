@@ -1,6 +1,6 @@
 # UCF JV Hackpack
 
-This repo hosts UCF JV Hackpack.
+This repo hosts the unofficial UCF JV Hackpack.
 It consists of pages and pages of copy-pasteable C++ code, for use in ICPC-style programming competitions.
 
 See [kactl.pdf](./kactl.pdf) for the final, browsable version, and [content/](./content/) for raw source code.
