@@ -2,7 +2,7 @@ name: Build + publish PDF
 
 on:
   push:
-    branches: [ci]
+    branches: [main]
 
 jobs:
   build-publish-pdf:
