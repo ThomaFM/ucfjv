@@ -21,7 +21,7 @@ fast: | build
 	$(LATEXCMD) content/kactl.tex </dev/null
 	cp build/kactl.pdf kactl.pdf
 
-kactl: test-session.pdf | build
+kactl: build
 	$(LATEXCMD) content/kactl.tex && $(LATEXCMD) content/kactl.tex
 	cp build/kactl.pdf kactl.pdf
 
@@ -29,7 +29,7 @@ clean:
 	cd build && rm -f kactl.aux kactl.log kactl.tmp kactl.toc kactl.pdf kactl.ptc
 
 veryclean: clean
-	rm -f kactl.pdf test-session.pdf
+	rm -f kactl.pdf
 
 .PHONY: help fast kactl clean veryclean
 
@@ -41,10 +41,6 @@ test:
 
 test-compiles:
 	./doc/scripts/compile-all.sh .
-
-test-session.pdf: content/test-session/test-session.tex content/test-session/chapter.tex | build
-	$(LATEXCMD) content/test-session/test-session.tex
-	cp build/test-session.pdf test-session.pdf
 
 showexcluded: build
 	grep -RoPh '^\s*\\kactlimport{\K.*' content/ | sed 's/.$$//' > build/headers_included
