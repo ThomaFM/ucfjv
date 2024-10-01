@@ -2,8 +2,7 @@ name: Build + publish PDF
 
 on:
   push:
-    tags:
-      - "v*"
+    branches: [ci]
 
 jobs:
   build-publish-pdf:
@@ -25,4 +24,6 @@ jobs:
     - name: Create release
       uses: softprops/action-gh-release@v2
       with:
+        name: Latest PDF
+        tag_name: latest
         files: hackpack.pdf
