@@ -21,6 +21,12 @@ jobs:
     - name: Build pdf
       run: make hackpack
 
+    - name: Delete old release/tag
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        gh release delete latest --cleanup-tag -y
+
     - name: Create release
       uses: softprops/action-gh-release@v2
       with:
