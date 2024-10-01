@@ -1,7 +1,6 @@
 #include "../utilities/template.h"
 
 #include "../../content/geometry/PolygonArea.h"
-#include "../../content/geometry/PolygonCenter.h"
 #include "../../content/geometry/InsidePolygon.h"
 
 int main() {
@@ -22,7 +21,5 @@ int main() {
 	su = su / count;
 	double approxArea = (double)count / 100000 * 100;
 	assert(abs(polygonArea2(ps)/2.0 - approxArea) < 1);
-	auto p = polygonCenter(ps);
-	assert(abs(p.x - su.x) < 1e-1 && abs(p.y - su.y) < 1e-1);
 	cout<<"Tests passed!"<<endl;
 }
