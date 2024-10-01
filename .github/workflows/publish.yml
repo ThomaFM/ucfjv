@@ -3,7 +3,7 @@ name: Build + publish PDF
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches: [ci]
 
 jobs:
   build-publish-pdf:
