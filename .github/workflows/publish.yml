@@ -13,12 +13,6 @@ jobs:
 
     steps:
 
-      # We can only filter for tags or main branch (not tags on main branch)
-      # so we exit here to avoid building a release from other branches
-    - name: Exit if tag not on main
-      if: endsWith(github.ref, 'main') == false
-      run: exit -1
-
     - name: Install pdflatex
       run: sudo apt-get install texlive-latex-base texlive-latex-recommended texlive-latex-extra
 
