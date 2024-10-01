@@ -1,0 +1,34 @@
+name: Build + publish PDF
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build-publish-pdf:
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+
+      # We can only filter for tags or main branch (not tags on main branch)
+      # so we exit here to avoid building a release from other branches
+    - name: Exit if tag not on main
+      if: endsWith(github.ref, 'main') == false
+      run: exit -1
+
+    - name: Install pdflatex
+      run: sudo apt-get install texlive-latex-base texlive-latex-recommended texlive-latex-extra
+
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Build pdf
+      run: make hackpack
+
+    - name: Create release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: hackpack.pdf
