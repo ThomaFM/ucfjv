@@ -8,6 +8,7 @@
  * Status: tested on https://cses.fi/problemset/task/1095/
  */
 #pragma once
+
 const long long mod = 1e9+7;
 long long expo(long long b, long long p) {
 	long long ans = 1;
