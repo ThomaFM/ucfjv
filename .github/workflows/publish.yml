@@ -35,7 +35,7 @@ jobs:
       # If we found an old release, we'll rename it to "Release <date (YYYY/MM/DD)>".
       # We also delete the existing `latest` tag and swap it for `<date>`
     - name: Rename old release/tag
-      if: steps.last_release.outputs.date != 'release not found'
+      if: steps.last_release.outputs.date
       env:
         GH_TOKEN: ${{ github.token }}
       run: |
