@@ -4,7 +4,7 @@
  * Source: own
  * Description: Given two integers b and p, computes b
  * raised to the power of p under modulo.
- * Time: $O(log(p))$
+ * Time: $O(\log (p))$
  * Status: tested on https://cses.fi/problemset/task/1095/
  */
 #pragma once
