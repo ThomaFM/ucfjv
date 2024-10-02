@@ -12,21 +12,39 @@ jobs:
 
     steps:
 
-    - name: Install pdflatex
-      run: sudo apt-get install texlive-latex-base texlive-latex-recommended texlive-latex-extra
-
     - name: Checkout
       uses: actions/checkout@v4
 
+    - name: Install pdflatex
+      run: sudo apt-get install texlive-latex-base texlive-latex-recommended texlive-latex-extra
+
+      # We're going to rename the old `latest` release/tag to its creation date.
+      # First we retrieve that creation date here if possible
+    - name: Retrieve last release date
+      id: last_release
+      run: |
+        gh release view latest --json createdAt \
+          | jq -r '.createdAt' \
+          | awk -FT '{print $1}' \
+          | awk -F- '{print "date="$1"/"$2"/"$3}' \
+          >> $GITHUB_OUTPUT
+
+      # If we found an old release, we'll rename it to "Release <date (YYYY/MM/DD)>".
+      # We also delete the existing `latest` tag and swap it for `<date>`
+    - name: Rename old release/tag
+      if: steps.last_release.outputs.date != 'release not found'
+      run: |
+        gh release delete ${{ steps.last_release.outputs.date }} --cleanup-tag -y
+        gh release edit latest \
+          -t "Release ${{ steps.last_release.outputs.date }}" \
+          --tag ${{ steps.last_release.outputs.date }}
+        git push --delete origin latest
+
+      # Now we build the PDF
     - name: Build pdf
       run: make hackpack
 
-    - name: Delete old release/tag
-      env:
-        GH_TOKEN: ${{ github.token }}
-      run: |
-        gh release delete latest --cleanup-tag -y
-
+      # ...and finally tag a new release with `latest`
     - name: Create release
       uses: softprops/action-gh-release@v2
       with:
