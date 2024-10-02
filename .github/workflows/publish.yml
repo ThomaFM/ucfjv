@@ -43,7 +43,8 @@ jobs:
           --cleanup-tag -y 2>/dev/null || true
         gh release edit latest \
           -t "Release ${{ steps.last_release.outputs.date }}" \
-          --tag ${{ steps.last_release.outputs.date }}
+          --tag ${{ steps.last_release.outputs.date }} \
+          --draft=false
         git push --delete origin latest
 
       # Now we build the PDF
