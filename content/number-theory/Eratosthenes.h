@@ -11,11 +11,9 @@
 
 vector<bool> sieve(int n) {
 	vector<bool> sv(n+1, 1);
-	sv[0] = 0, sv[1] = 0;
-	for (int i = 2; i * i <= n; i++) {
-		if (sv[i]) {
-			for (int j = i * i; j <= n; j += i) sv[j] = 0;
-		}
+	sv[0] = sv[1] = 0;
+	for (int i = 2; i * i <= n; i++) if (sv[i]) {
+		for (int j = i * i; j <= n; j += i) sv[j] = 0;
 	}
 	return sv;
 }
