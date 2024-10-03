@@ -8,10 +8,10 @@
  */
 #pragma once
 
-vi Z(const string& S) {
-	vi z(sz(S));
+vector<int> Z(const string& S) {
+	vector<int> z(sz(S));
 	int l = -1, r = -1;
-	rep(i,1,sz(S)) {
+	for (int i = 1; i < (sz(S)); i++) {
 		z[i] = i >= r ? 0 : min(r - i, z[i - l]);
 		while (i + z[i] < sz(S) && S[i + z[i]] == S[z[i]])
 			z[i]++;

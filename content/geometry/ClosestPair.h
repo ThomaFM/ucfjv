@@ -15,7 +15,7 @@ typedef Point<ll> P;
 pair<P, P> closest(vector<P> v) {
 	assert(sz(v) > 1);
 	set<P> S;
-	sort(all(v), [](P a, P b) { return a.y < b.y; });
+	sort(begin(v), end(v), [](P a, P b) { return a.y < b.y; });
 	pair<ll, pair<P, P>> ret{LLONG_MAX, {P(), P()}};
 	int j = 0;
 	for (P p : v) {
