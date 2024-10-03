@@ -17,9 +17,9 @@ vector<int> TwoColor(vector<vector<int>>& graph) {
 	queue<int> q;
 	for (int i = 0; i < n; i++) {
 		if (col[i] == -1) q.push(i), col[i] = 0;
-		while (q.size()) {
+		while (sz(q)) {
 			int u = q.front(); q.pop();
-			for (auto v : graph[u]) {
+			for (int v : graph[u]) {
 				if (col[v] == col[u]) return {};
 				if (col[v] == -1) {
 					col[v] = !col[u]; // inverts color
