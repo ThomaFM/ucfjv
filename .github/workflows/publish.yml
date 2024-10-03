@@ -42,8 +42,10 @@ jobs:
         gh release delete ${{ steps.last_release.outputs.date }} \
           --cleanup-tag -y 2>/dev/null || true
 
+        git fetch --tags origin
         ref=$(git rev-list -n 1 latest)
         git tag ${{ steps.last_release.outputs.date }} $ref
+        git push --tags origin
 
         gh release edit latest \
           --title "Release ${{ steps.last_release.outputs.date }}" \
