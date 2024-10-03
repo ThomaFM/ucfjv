@@ -39,12 +39,17 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       run: |
+        git tag -a ${{ steps.last_release.outputs.date }} latest^{}
+
         gh release delete ${{ steps.last_release.outputs.date }} \
           --cleanup-tag -y 2>/dev/null || true
+
         gh release edit latest \
-          -t "Release ${{ steps.last_release.outputs.date }}" \
+          --title "Release ${{ steps.last_release.outputs.date }}" \
           --tag ${{ steps.last_release.outputs.date }} \
-          --draft=false
+          --draft=false \
+          --verify-tag
+
         git push --delete origin latest
 
       # Now we build the PDF
