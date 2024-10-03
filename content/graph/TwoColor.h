@@ -12,7 +12,7 @@
 #pragma once
 
 vector<int> TwoColor(vector<vector<int>>& graph) {
-	int n = graph.size();
+	int n = sz(graph);
 	vector<int> col(n, -1);
 	queue<int> q;
 	for (int i = 0; i < n; i++) {
