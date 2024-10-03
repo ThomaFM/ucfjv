@@ -11,11 +11,11 @@
 #pragma once
 
 struct PS2D {
-	vector<vector<long long>> ps;
+	vector<vector<ll>> ps;
 	int n, m;
-	PS2D(vector<vector<long long>>& a) {
+	PS2D(vector<vector<ll>>& a) {
 		n = size(a), m = size(a[0]);
-		ps = vector(n+1, vector<long long>(m+1));
+		ps = vector(n+1, vector<ll>(m+1));
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
 				ps[i+1][j+1] = a[i][j] + ps[i][j+1]
@@ -23,7 +23,7 @@ struct PS2D {
 			}
 		}
 	}
-	long long query(int r1, int c1, int r2, int c2) {
+	ll query(int r1, int c1, int r2, int c2) {
 		return ps[r2][c2] - ps[r1][c2] - ps[r2][c1] + ps[r1][c1];
 	}
 };
