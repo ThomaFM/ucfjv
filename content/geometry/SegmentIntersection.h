@@ -36,5 +36,5 @@ template<class P> vector<P> segInter(P a, P b, P c, P d) {
 	if (onSegment(c, d, b)) s.insert(b);
 	if (onSegment(a, b, c)) s.insert(c);
 	if (onSegment(a, b, d)) s.insert(d);
-	return {begin(s), end(s)};
+	return {all(s)};
 }

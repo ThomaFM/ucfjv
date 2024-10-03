@@ -30,7 +30,7 @@ struct HashInterval {
 	vector<H> ha, pw;
 	HashInterval(string& str) : ha(sz(str)+1), pw(ha) {
 		pw[0] = 1;
-		for (int i = 0; i < (sz(str)); i++)
+		rep(i,0,sz(str))
 			ha[i+1] = ha[i] * C + str[i],
 			pw[i+1] = pw[i] * C;
 	}
@@ -42,10 +42,10 @@ struct HashInterval {
 vector<H> getHashes(string& str, int length) {
 	if (sz(str) < length) return {};
 	H h = 0, pw = 1;
-	for (int i = 0; i < (length); i++)
+	rep(i,0,length)
 		h = h * C + str[i], pw = pw * C;
 	vector<H> ret = {h};
-	for (int i = length; i < (sz(str)); i++) {
+	rep(i,length,sz(str)) {
 		ret.push_back(h = h * C + str[i] - pw * str[i-length]);
 	}
 	return ret;
