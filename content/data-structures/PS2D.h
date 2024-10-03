@@ -19,7 +19,7 @@ struct PS2D {
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
 				ps[i+1][j+1] = a[i][j] + ps[i][j+1]
-				 + ps[i+1][j] - ps[i][j];
+				+ ps[i+1][j] - ps[i][j];
 			}
 		}
 	}
