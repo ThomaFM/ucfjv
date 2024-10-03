@@ -14,7 +14,7 @@ struct PS2D {
 	vector<vector<ll>> ps;
 	int n, m;
 	PS2D(vector<vector<ll>>& a) {
-		n = size(a), m = size(a[0]);
+		n = sz(a), m = sz(a[0]);
 		ps = vector(n+1, vector<ll>(m+1));
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
