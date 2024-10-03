@@ -9,9 +9,9 @@
  */
 #pragma once
 
-const long long mod = 1e9+7;
-long long expo(long long b, long long p) {
-	long long ans = 1;
+const ll mod = 1e9+7;
+ll expo(long long b, long long p) {
+	ll ans = 1;
 	while (p > 0) {
 		if (p & 1) ans = (ans * b) % mod;
 		b = (b * b) % mod;
