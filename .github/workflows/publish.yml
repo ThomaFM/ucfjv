@@ -39,10 +39,10 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       run: |
-        git tag -a ${{ steps.last_release.outputs.date }} latest^{}
-
         gh release delete ${{ steps.last_release.outputs.date }} \
           --cleanup-tag -y 2>/dev/null || true
+
+        git tag -a ${{ steps.last_release.outputs.date }} latest^{}
 
         gh release edit latest \
           --title "Release ${{ steps.last_release.outputs.date }}" \
