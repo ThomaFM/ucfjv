@@ -3,7 +3,7 @@
  * Date: 2024-10-02
  * Source: own
  * Description: Prime sieve that generates a boolean vector where
- * sieve[i] = 1 if and only if the number is prime.
+ * isPrime[i] = 1 if and only if i is a prime number.
  * Time: $O(N\log\log (N))$
  * Status: Tested on https://codeforces.com/gym/102953/problem/8
  */
