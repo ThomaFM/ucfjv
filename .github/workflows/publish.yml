@@ -15,6 +15,8 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
     - name: Install pdflatex
       run: sudo apt-get install texlive-latex-base texlive-latex-recommended texlive-latex-extra
@@ -42,10 +44,9 @@ jobs:
         gh release delete ${{ steps.last_release.outputs.date }} \
           --cleanup-tag -y 2>/dev/null || true
 
-        git fetch --tags origin
         ref=$(git rev-list -n 1 latest)
         git tag ${{ steps.last_release.outputs.date }} $ref
-        git push --tags origin
+        git push origin tag ${{ steps.last_release.outputs.date }}
 
         gh release edit latest \
           --title "Release ${{ steps.last_release.outputs.date }}" \
@@ -53,7 +54,8 @@ jobs:
           --draft=false \
           --verify-tag
 
-        git push --delete origin latest
+        git tag --delete latest
+        git push origin :refs/tags/latest
 
       # Now we build the PDF
     - name: Build pdf
