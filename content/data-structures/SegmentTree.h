@@ -3,8 +3,10 @@
  * Date: 2024-10-09
  * License: CC0
  * Source: Inspired by KACTL
- * Description: Segment tree supporting Range Minimum Queries and Point Add Queries
- * Time: O(\log N)
+ * Description: Segment tree supporting Range Minimum Queries
+ * (returns minimum value on the inclusive-exclusive range [L,R)
+ * in the tree) and Point Add Queries (add v to a specific index)
+ * Time: O(\log N for both operations)
  * Status: tested on https://cses.fi/problemset/task/1649
  */
 #pragma once
