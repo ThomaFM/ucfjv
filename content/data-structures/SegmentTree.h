@@ -10,20 +10,20 @@
 #pragma once
 
 struct Node {
-	Node *l = 0, *r = 0;
+	Node *left = 0, *right = 0;
 	int lo, hi;
 	ll val = 0; // initial value of segment
 	Node(int lo, int hi) : lo(lo), hi(hi) {
 		if (lo + 1 < hi) {
 			int mid = lo + (hi - lo) / 2;
-			l = new Node(lo, mid), r = new Node(mid, hi);
+			left = new Node(lo, mid), right = new Node(mid, hi);
 		}
 	}
 	// queries min on [L, R) range
 	ll query(int L, int R) {
 		if (R <= lo || hi <= L) return LLONG_MAX; // idempotent value
 		if (L <= lo && hi <= R) return val;
-		return comb(l->query(L, R), r->query(L, R));
+		return comb(left->query(L, R), right->query(L, R));
 	}
 	void add(int idx, int v) {
 		if (lo + 1 == hi) {
@@ -31,8 +31,8 @@ struct Node {
 			return;
 		}
 		int mid = lo + (hi - lo) / 2;
-		(mid <= idx ? r : l)->add(idx, v);
-		val = comb(l->val, r->val);
+		(mid <= idx ? right : left)->add(idx, v);
+		val = comb(left->val, right->val);
 	}
 	ll comb(ll a, ll b) { return min(a, b); }
 };
