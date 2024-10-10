@@ -14,25 +14,25 @@ struct Node {
 	int lo, hi;
 	ll val = 0; // initial value of segment
 	Node(int lo, int hi) : lo(lo), hi(hi) {
-		if (lo + 1 < hi) {
-			int mid = lo + (hi - lo) / 2;
-			left = new Node(lo, mid), right = new Node(mid, hi);
-		}
+		if (lo + 1 == hi) return;
+		int mid = (lo + hi) / 2;
+		left = new Node(lo, mid), right = new Node(mid, hi);
 	}
 	// queries min on [L, R) range
 	ll query(int L, int R) {
 		if (R <= lo || hi <= L) return LLONG_MAX; // idempotent value
 		if (L <= lo && hi <= R) return val;
-		return comb(left->query(L, R), right->query(L, R));
+		return merge(left->query(L, R), right->query(L, R));
 	}
 	void add(int idx, int v) {
 		if (lo + 1 == hi) {
 			val += v;
 			return;
 		}
-		int mid = lo + (hi - lo) / 2;
-		(mid <= idx ? right : left)->add(idx, v);
-		val = comb(left->val, right->val);
+		int mid = (lo + hi) / 2;
+		if (mid <= idx) right->add(idx, v);
+		else left->add(idx, v);
+		val = merge(left->val, right->val);
 	}
-	ll comb(ll a, ll b) { return min(a, b); }
+	ll merge(ll a, ll b) { return min(a, b); }
 };
