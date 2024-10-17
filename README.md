@@ -3,7 +3,7 @@
 This repo hosts UCF JV Hackpack.
 It consists of pages and pages of copy-pasteable C++ code, for use in ICPC-style programming competitions.
 
-See [kactl.pdf](./kactl.pdf) for the final, browsable version, and [content/](./content/) for raw source code.
+See [the latest release](https://github.com/ThomaFM/ucfjv/releases/latest) for a final, browsable version, and [content/](./content/) for raw source code.
 
 ## Aspirations
 
