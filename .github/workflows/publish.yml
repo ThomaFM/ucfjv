@@ -15,16 +15,18 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
     - name: Install pdflatex
       run: sudo apt-get install texlive-latex-base texlive-latex-recommended texlive-latex-extra
 
-      # We're going to rename the old `latest` release/tag to its creation date.
-      # First we retrieve that creation date here if possible
+    # We're going to rename the old `latest` release/tag to its creation date.
+    # First we retrieve that creation date here if possible
     - name: Retrieve last release date
       id: last_release
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
       run: |
         gh release view latest --json createdAt \
           | jq -r '.createdAt' \
@@ -32,20 +34,19 @@ jobs:
           | awk -F- '{print "date="$1"/"$2"/"$3}' \
           >> $GITHUB_OUTPUT
 
-      # If we found an old release, we'll rename it to "Release <date (YYYY/MM/DD)>".
-      # We also delete the existing `latest` tag and swap it for `<date>`
+    # If we found an old release, we'll rename it to "Release <date (YYYY/MM/DD)>".
+    # We also delete the existing `latest` tag and swap it for `<date>`
     - name: Rename old release/tag
       if: steps.last_release.outputs.date
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
       run: |
         gh release delete ${{ steps.last_release.outputs.date }} \
           --cleanup-tag -y 2>/dev/null || true
 
-        git fetch --tags origin
         ref=$(git rev-list -n 1 latest)
         git tag ${{ steps.last_release.outputs.date }} $ref
-        git push --tags origin
+        git push origin tag ${{ steps.last_release.outputs.date }}
 
         gh release edit latest \
           --title "Release ${{ steps.last_release.outputs.date }}" \
@@ -53,13 +54,14 @@ jobs:
           --draft=false \
           --verify-tag
 
-        git push --delete origin latest
+        git tag --delete latest
+        git push origin :refs/tags/latest
 
-      # Now we build the PDF
+    # Build the PDF (duh)
     - name: Build pdf
       run: make hackpack
 
-      # ...and finally tag a new release with `latest`
+    # ...and finally tag a new release with `latest`
     - name: Create release
       uses: softprops/action-gh-release@v2
       with:
