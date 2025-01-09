@@ -3,8 +3,8 @@
  * Date: 2024-10-08
  * Source: own
  * Description: allows for quickly merging sets together
- * Time: O(N) Memory, amortized O(\alpha(N)) for find/join
- * , where \alpha(N) < 4 for all feasible input sizes
+ * Time: $O(N)$ Memory, amortized $O(\alpha(N))$ for find/join
+ * , where$ \alpha(N)$ < 4 for all feasible input sizes
  * Status: Tested on codeforces edu dsu problems
  */
 #pragma once
