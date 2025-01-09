@@ -14,7 +14,7 @@ void gen(string& s, int at, int alpha, F f) {
 }
 
 void test(const string& s) {
-	vi p = pi(s);
+	vi p = kmp(s);
 	rep(i,0,sz(s)) {
 		int maxlen = -1;
 		rep(len,0,i+1) {
@@ -29,7 +29,7 @@ fail:;
 }
 
 int main() {
-	// string str; cin >> str; for(auto &x: pi(str)) cout << x; cout << endl;
+	// string str; cin >> str; for(auto &x: kmp(str)) cout << x; cout << endl;
 	// test ~3^12 strings
 	rep(n,0,13) {
 		string s(n, 'x');
