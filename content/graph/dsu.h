@@ -7,8 +7,8 @@
  * specific element is in (find(x)).
  * find(x) == find(y) if/only if x and y are in the same set
  * used to represent connected components in undirected graphs 
- * Time: O(N) Memory, amortized O(\alpha(N)) for find/join
- * , where \alpha(N) < 4 for all feasible input sizes
+ * Time: $O(N)$ Memory, amortized $O(\alpha(N))$ for find/join
+ * , where $\alpha(N) < 4$ for all feasible input sizes
  * Status: Tested on codeforces edu dsu problems
  */
 #pragma once
