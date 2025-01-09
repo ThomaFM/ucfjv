@@ -11,6 +11,8 @@
  * , where \alpha(N) < 4 for all feasible input sizes
  * Status: Tested on codeforces edu dsu problems
  */
+#pragma once
+
 struct dsu {
     vector<int> par, siz;
     dsu(int n) {
