@@ -4,7 +4,7 @@
  * License: CC0
  * Description: pi[x] computes the length of the longest 
  * prefix of s that ends at x, other than s[0...x] itself
- * Ex: (abacaba -> 0010123)
+ * (as an example, abacaba -> 0010123)
  * match finds the starting indexes for all occurrences 
  * of a specific pattern in s (overlaps allowed)
  * Time: O(n)
