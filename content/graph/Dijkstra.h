@@ -15,14 +15,16 @@ vector<ll> dijkstra(vector<vector<pair<int, ll>>>& g, int s) {
   vector<ll> dist(sz(g), 1e18+5); // initialize with inf
   priority_queue<pair<ll, int>, 
 		vector<pair<ll, int>>, greater<>> pq;
-	pq.emplace(dist[s] = 0, s);
+	dist[s] = 0;
+	pq.emplace(0, s);
 	while (sz(pq)) {
 		auto [du, u] = pq.top();
 		pq.pop();
 		if (du > dist[u]) continue;
 		for (auto [v, w] : g[u]) {
 			if (du + w < dist[v]) {
-				pq.emplace(dist[v] = du+w, v);
+				dist[v] = du + w;
+				pq.emplace(du + w, v);
 			}
 		}
 	}
