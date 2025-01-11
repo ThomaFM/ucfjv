@@ -3,7 +3,7 @@
  * Date: 2024-09-26
  * Source: own
  * Description: Given an undirected graph, finds a way to 
- * color the nodes of the graph such that every edge connects.
+ * color the nodes of the graph such that every edge connects
  * nodes of different colors. Each node is colored 0 or 1.
  * Returns an empty vector if there is no valid two-coloring.
  * Time: $O(|V|+|E|)$
