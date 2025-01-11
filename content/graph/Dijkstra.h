@@ -14,8 +14,8 @@
 const ll inf = 1e18+5;
 
 vector<ll> dijkstra(vector<vector<pair<int, ll>>>& g, int s) {
-  vector<ll> dist(sz(g), inf);
-  priority_queue<pair<ll, int>, 
+	vector<ll> dist(sz(g), inf);
+	priority_queue<pair<ll, int>, 
 		vector<pair<ll, int>>, greater<>> pq;
 	dist[s] = 0;
 	pq.emplace(0, s);
