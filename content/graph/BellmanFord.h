@@ -15,7 +15,8 @@
 
 const ll inf = 1e18+5;
 
-vector<ll> bellmanFord(vector<tuple<ll, int, int>>& ed, int n, int s) {
+using edge = tuple<ll, int, int>;
+vector<ll> bellmanFord(vector<edge>& ed, int n, int s) {
 	vector<ll> dist(n, inf);
 	dist[s] = 0;
 	for (int i = 0; i < n; i++) {
