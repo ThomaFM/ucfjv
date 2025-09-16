@@ -16,23 +16,23 @@
 const ll inf = 1e18+5;
 
 vector<ll> bellmanFord(vector<tuple<ll, int, int>>& ed, int n, int s) {
-    vector<ll> dist(n, inf);
-    dist[s] = 0;
-    for (int i = 0; i < n; i++) {
-        for (auto [w, u, v] : ed) {
-            if (dist[u] == inf) continue;
-            if (dist[u] + w < dist[v]) {
-                if (i == n-1) dist[v] = -inf;
-                else dist[v] = dist[u] + w;
-            }
-        }
-    }
+	vector<ll> dist(n, inf);
+	dist[s] = 0;
+	for (int i = 0; i < n; i++) {
+		for (auto [w, u, v] : ed) {
+			if (dist[u] == inf) continue;
+			if (dist[u] + w < dist[v]) {
+				if (i == n-1) dist[v] = -inf;
+				else dist[v] = dist[u] + w;
+			}
+		}
+	}
 
-    for (int i = 0; i < n; i++) {
-        for (auto [w, u, v] : ed) {
-            if (dist[u] == -inf) dist[v] = -inf;
-        }
-    }
+	for (int i = 0; i < n; i++) {
+		for (auto [w, u, v] : ed) {
+			if (dist[u] == -inf) dist[v] = -inf;
+		}
+	}
 
-    return dist;
+	return dist;
 }
