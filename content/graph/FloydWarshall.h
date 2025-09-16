@@ -1,6 +1,6 @@
 /**
  * Author: Brian Grana
- * Date: 2024-01-10
+ * Date: 2025-01-10
  * Source: own
  * Description: Given a weighted adjacency matrix, returns
  * a new weighted adjacency matrix M such that M[i][j] is
