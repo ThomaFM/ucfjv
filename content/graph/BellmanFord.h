@@ -9,7 +9,7 @@
  * Nodes reachable via a negative cycle are distance -inf.
  * Try to use Dijkstra if this TLE's.
  * Time: $O(|V||E|)$
- * Status: tested on https://cses.fi/problemset/task/1668
+ * Status: tested on https://cses.fi/problemset/task/1673/
  */
 #pragma once
 
