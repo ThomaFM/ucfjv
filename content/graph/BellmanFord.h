@@ -13,7 +13,7 @@
  */
 #pragma once
 
-const ll inf = 1e18+5;
+const ll inf = 1e18;
 
 using edge = tuple<ll, int, int>;
 vector<ll> bellmanFord(vector<edge>& ed, int n, int s) {

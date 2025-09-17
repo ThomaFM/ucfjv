@@ -12,7 +12,7 @@
  */
 #pragma once
 
-const ll inf = 1e18+5;
+const ll inf = 1e18;
 
 vector<vector<ll>> floydWarshall(vector<vector<ll>> M) {
 	for (int i = 0; i < sz(M); i++) M[i][i] = 0;

@@ -17,8 +17,7 @@ vector<int> shortestPath(vector<vector<int>>& g, int s) {
 	dist[s] = 0;
 	q.push(s);
 	while (sz(q)) {
-		int u = q.front();
-		q.pop();
+		int u = q.front(); q.pop();
 		for (int v : g[u]) {
 			if (dist[v] == -1) {
 				dist[v] = dist[u] + 1;
