@@ -31,22 +31,13 @@ struct Trie {
 		}
 		t[cn].w_count++;
 	}
-	int query_word(string& s) {
+	int query(string& s) {
 		int cn = 0;
 		for (int i = 0; i < sz(s); i++) {
-			if (!t[cn].nxt.count(s[i])) return 0;
+			if (!t[cn].nxt.count(s[i])) return -1;
 			cn = t[cn].nxt[s[i]];
 		}
-
-		return t[cn].w_count;
-	}
-	int query_prefix(string& s) {
-		int cn = 0;
-		for (int i = 0; i < sz(s); i++) {
-			if (!t[cn].nxt.count(s[i])) return 0;
-			cn = t[cn].nxt[s[i]];
-		}
-
-		return t[cn].p_count;
+		
+		return cn;
 	}
 };
